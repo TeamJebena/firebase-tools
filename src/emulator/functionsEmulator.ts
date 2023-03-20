@@ -122,6 +122,7 @@ export interface FunctionsEmulatorArgs {
   remoteEmulators?: Record<string, EmulatorInfo>;
   adminSdkConfig?: AdminSdkConfig;
   projectAlias?: string;
+  selectedFunctions?: string[];
 }
 
 /**
@@ -519,7 +520,8 @@ export class FunctionsEmulator implements EmulatorInstance {
         userEnvs
       );
       const discoveredBackend = resolution.backend;
-      const endpoints = backend.allEndpoints(discoveredBackend);
+      // const endpoints = backend.allEndpoints(discoveredBackend);
+      const endpoints = backend.selectEndpoints(discoveredBackend, this.args.selectedFunctions);
       prepareEndpoints(endpoints);
       for (const e of endpoints) {
         e.codebase = emulatableBackend.codebase;

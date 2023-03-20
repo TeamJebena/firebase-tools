@@ -629,6 +629,14 @@ export function allEndpoints(backend: Backend): Endpoint[] {
   }, [] as Endpoint[]);
 }
 
+
+export function selectEndpoints(backend: Backend, predicates: string[] | undefined) {
+  if (!predicates) {
+    return allEndpoints(backend);
+  }
+  return allEndpoints(backend).filter((endpoint) => predicates.includes(endpoint.entryPoint));
+}
+
 /** A helper utility for checking whether an endpoint matches a predicate. */
 export function someEndpoint(
   backend: Backend,

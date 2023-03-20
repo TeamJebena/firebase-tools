@@ -540,6 +540,11 @@ export async function startAll(
 
     const account = getProjectDefaultAccount(options.projectRoot);
 
+    let selectedFunctions: string[] | undefined;
+    if (options.onlyFunctions) {
+      selectedFunctions = options.onlyFunctions.toString().split(",");
+    }
+
     // TODO(b/213241033): Figure out how to watch for changes to extensions .env files & reload triggers when they change.
     const functionsEmulator = new FunctionsEmulator({
       projectId,
@@ -550,6 +555,7 @@ export async function startAll(
       port: functionsAddr.port,
       debugPort: inspectFunctions,
       projectAlias: options.projectAlias,
+      selectedFunctions,
     });
     await startEmulator(functionsEmulator);
 

@@ -28,6 +28,11 @@ export const DESC_ONLY =
   "Valid options are: " +
   JSON.stringify(ALL_SERVICE_EMULATORS);
 
+export const FLAG_SELECT_FUNCTIONS = "--only-functions <functions>";
+export const DESC_SELECT_FUNCTIONS = "run these specific functions only. " +
+  "This is a comma separated list of function names with no space after commas. " +
+  "function1,function2,etc. If you omit this flag, all functions will be run."
+
 export const FLAG_INSPECT_FUNCTIONS = "--inspect-functions [port]";
 export const DESC_INSPECT_FUNCTIONS =
   "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)";
